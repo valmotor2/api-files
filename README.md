@@ -1,8 +1,8 @@
 ### Cum functioneaza? Si la ce ajuta.
 
-Este o aplicatie simpla de unde descarcam audio dupa numar de telefon si data acestuia.
+Este o aplicatie simpla de unde descarcam fisiere dupa numele fisierului, data fisierului creat, etc.
 
-De multe ori avem nevoie de inregistrari audio care sunt in format mp3, sau alt format stocate intr-un folder care acesta trebuie sa fie
+De multe ori avem nevoie de anumite fisierecare sunt in format-ul x stocate intr-un folder care acesta trebuie sa fie
 definit in .env
 
 ## Atentie,
