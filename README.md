@@ -30,18 +30,18 @@ Aceasta actualizeaza baza de date cu fisierele scanate de pe un director definit
     "limit": 10,
     "offset": 0,
     "search": "", // cauta doar petnru nume fisier
-    "startTo": "", // cauta doar inregistrarile care incep cu data , inclusiv, format: YYYY-MM-DD HH:mm:ss
-    "endTo": "", // cauta doar inregistrarile care se termina pana la data de, inclusiv, format: YYYY-MM-DD HH:mm:ss
+    "startTo": "", // cauta doar fisierele care incep cu data , inclusiv, format: YYYY-MM-DD HH:mm:ss
+    "endTo": "", // cauta doar fisierele care se termina pana la data de, inclusiv, format: YYYY-MM-DD HH:mm:ss
 }
 ```
 
-# Returneaza un json cu toate inregistrarile audio de la numarul de telefon si data specificata
+# Returneaza in format JSON
 
 Avem o lista care returneaza in format JSON cu toate proprietatrile despre aceste inregistrari.
 
 ## GET http://api/records/[id]
 
-Returneaza detalii despre aceea inregistrarile
+Returneaza detalii despre aceea fisierele
 
 ## GET http://api/records/[id]/download
 
