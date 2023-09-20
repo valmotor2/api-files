@@ -1,4 +1,4 @@
-import express, { Request, Response, Application } from "express";
+import express, { Request, Response, Application, NextFunction } from "express";
 import dotenv from "dotenv";
 import db, { records } from "./db";
 import { getDetailOfFile, getFileList, removeFile } from "./utils";
@@ -10,6 +10,19 @@ dotenv.config();
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const token = (req.headers.authorization || req.query.token) as string;
+
+  if (
+    !token ||
+    token.replace("Bearer ", "").trim() !== process.env.ACCESS_TOKEN
+  ) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  next();
+});
 
 app.get("/syncron", async (req: Request, res: Response) => {
   syncronize();
@@ -87,8 +100,6 @@ app.delete("/records/:id", async (req: Request, res: Response) => {
   await db.delete(records).where(eq(records.id, idRecord));
   res.json({ message: "Deleted" });
 });
-
-app.use();
 
 // catch all errors
 app.use((err: any, req: Request, res: Response, next: any) => {
