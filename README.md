@@ -41,7 +41,7 @@ Avem o lista care returneaza in format JSON cu toate proprietatrile despre acest
 
 ## GET http://api/records/[id]
 
-Returneaza detalii despre aceea fisierele
+Returneaza detalii despre fisier
 
 ## GET http://api/records/[id]/download
 
@@ -49,4 +49,4 @@ Arunca in format binar fisierul cerut
 
 ## DELETE http://api/records/[id]
 
-Sterge mai intai inregistrarea, daca reuseste sterge si inregistrarea, in caz contrar error code 500
+Sterge mai intai fisierul, daca reuseste, sterge apoi inregistrarea, in caz contrar arunca eroare 500
