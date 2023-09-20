@@ -17,17 +17,13 @@ definit in .env
 npx drizzle-kit generate:sqlite --schema=db.ts
 ```
 
-## Calea: http://api/syncron
-
-### Metoda: GET
+## GET: http://api/syncron
 
 Aceasta actualizeaza baza de date cu fisierele scanate de pe un director definit in .env
 
-## Calea http://api/records
+## GET http://api/records
 
-### Metoda: GET
-
-### Params as QUERY ( optional )
+### QUERY ( optional )
 
 ```
 {
@@ -43,20 +39,14 @@ Aceasta actualizeaza baza de date cu fisierele scanate de pe un director definit
 
 Avem o lista care returneaza in format JSON cu toate proprietatrile despre aceste inregistrari.
 
-## Calea http://api/records/[id]
-
-### Metoda: GET
+## GET http://api/records/[id]
 
 Returneaza detalii despre aceea inregistrarile
 
-## Calea http://api/records/[id]/download
-
-### Metoda: GET
+## GET http://api/records/[id]/download
 
 Arunca in format binar fisierul cerut
 
-## Calea http://api/records/[id]
-
-### Metoda: DELETE
+## DELETE http://api/records/[id]
 
 Sterge mai intai inregistrarea, daca reuseste sterge si inregistrarea, in caz contrar error code 500
