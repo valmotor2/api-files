@@ -11,11 +11,15 @@ definit in .env
 
 - versiunea minima de node: v16.20.1
 - completati fisierul .env cu datele necesare
+- yarn install
 - aveti nevoie sa generati sqlite pentru stocarea informatiilor despre fisier, rulati comanda:
 
 ```
 npx drizzle-kit generate:sqlite --schema=db.ts
 ```
+
+- yarn run build
+- yarn run start ( or pm2 - pm2 start dist/index.js --name "api-sau-altceva" )
 
 ## GET: http://api/syncron
 
