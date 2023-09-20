@@ -51,6 +51,11 @@ Returneaza detalii despre fisier
 
 Arunca in format binar fisierul cerut
 
+## GET http://api/records/[id]/listen-audio
+
+Asculta fisierele in format audio cu ajutorul controlului audio din browser
+Este o varianta foarte rapida de a asculta fisierele audio fara a le descarca
+
 ## DELETE http://api/records/[id]
 
 Sterge mai intai fisierul, daca reuseste, sterge apoi inregistrarea, in caz contrar arunca eroare 500
