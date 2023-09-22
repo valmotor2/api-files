@@ -32,6 +32,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+app.get("/", (req: Request, res: Response) => {
+  res.json({ message: "Hello World!" });
+});
+
 app.get("/syncron", async (req: Request, res: Response) => {
   const response = await syncronize();
 
