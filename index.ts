@@ -154,7 +154,6 @@ app.get("/records/:id/download", async (req: Request, res: Response) => {
     return res.status(404).json({ message: "Not Found" });
   }
 
-  // limit to 100 mb to download
   const stat = getStatOfPath(row[0].path);
   const SIZE_DOWNLOAD_LIMIT = +process.env.SIZE_DOWNLOAD_LIMIT! || 100;
 
@@ -209,6 +208,7 @@ const syncronize = async () => {
     // ia fisierele
     const files = await getFileList(process.env.DIR_RECORDS || "");
 
+    console.log("total files to sync", files.length);
     // ia stats ale fisierelor
     // creaza values as array
     const stats = [];

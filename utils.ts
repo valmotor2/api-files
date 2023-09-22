@@ -8,7 +8,7 @@ export const getFileList = async (dirName: string) => {
   }
 
   let files: string[] = [];
-  const items = await fs.readdirSync(dirName, { withFileTypes: true });
+  const items = fs.readdirSync(dirName, { withFileTypes: true });
   for (const item of items) {
     if (item.isDirectory()) {
       files = [...files, ...(await getFileList(`${dirName}/${item.name}`))];
