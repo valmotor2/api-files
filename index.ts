@@ -6,7 +6,7 @@ import fs from "fs";
 import db, { records } from "./db";
 import {
   getDetailOfFile,
-  getFileList,
+  getFiles,
   getMimeType,
   getStatOfPath,
   removeFile,
@@ -206,18 +206,28 @@ const job = new CronJob(
 const syncronize = async () => {
   try {
     // ia fisierele
-    const files = await getFileList(process.env.DIR_RECORDS || "");
+    const files = await getFiles(process.env.DIR_RECORDS || "");
 
-    console.log("total files to sync", files.length);
     // ia stats ale fisierelor
     // creaza values as array
     const stats = [];
+    const limitToInsert = 999;
+    let countForLimit = 0;
     for await (let file of files) {
       const stat = await getDetailOfFile(file);
       stats.push(stat);
+
+      countForLimit++;
+      if (countForLimit === limitToInsert) {
+        await db.insert(records).values(stats).onConflictDoNothing();
+        stats.length = 0;
+        countForLimit = 0;
+      }
     }
 
-    await db.insert(records).values(stats).onConflictDoNothing();
+    if (stats.length > 0) {
+      await db.insert(records).values(stats).onConflictDoNothing();
+    }
   } catch (err) {
     console.log(err);
   }
