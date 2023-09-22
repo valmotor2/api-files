@@ -33,9 +33,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.get("/syncron", async (req: Request, res: Response) => {
-  syncronize();
+  const response = await syncronize();
 
-  res.json({ message: "Syncronized" });
+  res.json({ message: `Syncronized`, data: response });
 });
 
 app.get("/records", async (req: Request, res: Response) => {
@@ -204,10 +204,12 @@ const job = new CronJob(
 );
 
 const syncronize = async () => {
+  let filesSyncronized = 0;
+  let filesTotal = 0;
   try {
     // ia fisierele
     const files = await getFiles(process.env.DIR_RECORDS || "");
-
+    filesTotal = files.length;
     // ia stats ale fisierelor
     // creaza values as array
     const stats = [];
@@ -220,6 +222,7 @@ const syncronize = async () => {
       countForLimit++;
       if (countForLimit === limitToInsert) {
         await db.insert(records).values(stats).onConflictDoNothing();
+        filesSyncronized += countForLimit;
         stats.length = 0;
         countForLimit = 0;
       }
@@ -227,8 +230,14 @@ const syncronize = async () => {
 
     if (stats.length > 0) {
       await db.insert(records).values(stats).onConflictDoNothing();
+      filesSyncronized += stats.length;
     }
   } catch (err) {
     console.log(err);
   }
+
+  return {
+    filesSyncronized,
+    filesTotal,
+  };
 };
