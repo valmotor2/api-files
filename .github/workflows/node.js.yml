@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 16.20.x
       - run: npm install
-      - run: echo "Salut!" && echo "PORT=$PORT" >> .env && echo "SIZE_DOWNLOAD_LIMIT=$SIZE_DOWNLOAD_LIMIT" >> .env && echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> .env && echo "DIR_RECORDS=$DIR_RECORDS" >> .env
+      - run: echo "Salut!" && echo "PORT=${{vars.PORT}}" >> .env && echo "SIZE_DOWNLOAD_LIMIT=${{vars.SIZE_DOWNLOAD_LIMIT}}" >> .env && echo "ACCESS_TOKEN=${{vars.ACCESS_TOKEN}}" >> .env && echo "DIR_RECORDS=${{vars.DIR_RECORDS}}" >> .env
       - run: npx drizzle-kit generate:sqlite --schema=db.ts
       - run: npm run build --if-present
       - run: pm2 start dist/index.js -f --name managerFileAsterisk:3012
