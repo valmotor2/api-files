@@ -15,14 +15,6 @@ jobs:
         node-version: [16.x]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-          cache-dependency-path: "./package-lock.json"
       - run: npm install
-      - run: npx drizzle-kit generate:sqlite --schema=db.ts
       - run: npm run build --if-present
-      - run: pm2 start dist/index.js --name managerFileAsterisk:3012
       - run: pm2 restart managerFileAsterisk:3012
