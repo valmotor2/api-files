@@ -200,7 +200,8 @@ app.listen(port, () => {
 const job = new CronJob(
   "0 0 12 * * *",
   async () => {
-    syncronize();
+    // syncronize();
+    // fail when we have over milions of files!
   },
   null,
   true,
