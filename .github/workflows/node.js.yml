@@ -20,6 +20,6 @@ jobs:
       - run: echo "Salut!" && echo "PORT=${{vars.PORT}}" >> .env && echo "SIZE_DOWNLOAD_LIMIT=${{vars.SIZE_DOWNLOAD_LIMIT}}" >> .env && echo "ACCESS_TOKEN=${{vars.ACCESS_TOKEN}}" >> .env && echo "DIR_RECORDS=${{vars.DIR_RECORDS}}" >> .env
       - run: npx drizzle-kit generate:sqlite --schema=db.ts
       - run: npm run build --if-present
-      - run: pm2 start dist/index.js -f --name managerFileAsterisk:3012
+      # - run: pm2 start dist/index.js -f --name managerFileAsterisk:3012
       - run: pm2 restart managerFileAsterisk:3012
-      - run: pm2 save
+      # - run: pm2 save
