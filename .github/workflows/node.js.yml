@@ -22,7 +22,7 @@ jobs:
       - run: npm install
         env:
           PORT: ${{ environments.PORT }}
-          SIZE_DOWNLOAD_LIMIT: ${{ environments.SIZE_DOWNLOAD_LIMIT }}}
+          SIZE_DOWNLOAD_LIMIT: ${{ environments.SIZE_DOWNLOAD_LIMIT }}
           ACCESS_TOKEN: ${{ environments.ACCESS_TOKEN }}
           DIR_RECORDS: ${{ environments.DIR_RECORDS }}
       - run: npx drizzle-kit generate:sqlite --schema=db.ts
