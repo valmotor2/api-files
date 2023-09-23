@@ -23,7 +23,7 @@ jobs:
         env:
           PORT: ${{ env.PORT }}
           SIZE_DOWNLOAD_LIMIT: ${{ env.SIZE_DOWNLOAD_LIMIT }}
-          ACCESS_TOKEN: ${{ secret.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           DIR_RECORDS: ${{ env.DIR_RECORDS }}
       - run: echo "PORT=$PORT" >> .env && echo "SIZE_DOWNLOAD_LIMIT=$SIZE_DOWNLOAD_LIMIT" >> .env && echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> .env && echo "DIR_RECORDS=$DIR_RECORDS" >> .env
       - run: npx drizzle-kit generate:sqlite --schema=db.ts
