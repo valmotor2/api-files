@@ -21,10 +21,10 @@ jobs:
           node-version: 16.x
       - run: npm install
         env:
-          PORT: ${{ environments.PORT }}
-          SIZE_DOWNLOAD_LIMIT: ${{ environments.SIZE_DOWNLOAD_LIMIT }}
-          ACCESS_TOKEN: ${{ environments.ACCESS_TOKEN }}
-          DIR_RECORDS: ${{ environments.DIR_RECORDS }}
+          PORT: ${{ env.PORT }}
+          SIZE_DOWNLOAD_LIMIT: ${{ env.SIZE_DOWNLOAD_LIMIT }}
+          ACCESS_TOKEN: ${{ env.ACCESS_TOKEN }}
+          DIR_RECORDS: ${{ env.DIR_RECORDS }}
       - run: npx drizzle-kit generate:sqlite --schema=db.ts
       - run: npm run build --if-present
       - run: pm2 start dist/index.js --name managerFileAsterisk:3012
