@@ -15,7 +15,16 @@ jobs:
         node-version: [16.x]
     steps:
       - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
       - run: npm install
+        env:
+          PORT: ${{ environments.PORT }}
+          SIZE_DOWNLOAD_LIMIT: ${{ environments.SIZE_DOWNLOAD_LIMIT }}}
+          ACCESS_TOKEN: ${{ environments.ACCESS_TOKEN }}
+          DIR_RECORDS: ${{ environments.DIR_RECORDS }}
       - run: npx drizzle-kit generate:sqlite --schema=db.ts
       - run: npm run build --if-present
       - run: pm2 start dist/index.js --name managerFileAsterisk:3012
